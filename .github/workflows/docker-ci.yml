@@ -20,11 +20,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: |
-          echo "Starting Docker build..."
-          docker buildx build --load \
-            --tag "${{ secrets.DOCKER_USERNAME }}/flask-app:v2" \
-            .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/flask-app:v2 .
 
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/flask-app:v2
